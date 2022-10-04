@@ -1,16 +1,16 @@
 
 
 export default {
-    // setup(props) {
+    setup() {
 
-    // },
+    },
     data() {
         return {
 
         }
     },
     beforeCreate() {
-        // document.querySelector('body').setAttribute('style', 'background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);')
+
     },
     // beforeRouteEnter (to, from, next) {
     //     // ...
@@ -18,14 +18,12 @@ export default {
     component: {
 
     },
-    beforeCreate(){
-        
-    },
+
     created() {
-        console.log("test");
+        document.querySelector('#app').setAttribute('style', 'background-color: rgb(237, 242, 247);');
     },
     methods: {
-        
+
     },
 
 }
