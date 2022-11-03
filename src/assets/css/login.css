@@ -30,6 +30,12 @@
     border-radius: 20px;
 }
 
+@media (min-width: 992px) {
+    .login-right {
+        left: -23%;
+    }
+}
+
 
 .box {
     position: relative;
@@ -51,7 +57,6 @@
     font-size: 13px;
     position: absolute;
     left: 0;
-    color: #adb5bd;
     padding: 10px 0 5px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -110,4 +115,56 @@
     100% {
         background-position-x: 280px;
     }
+}
+
+.spinner {
+    display: flex;
+    justify-content: center;
+}
+
+svg {
+    width: 50%;
+    max-width: 10rem;
+    animation: rotate 3.6s linear infinite;
+}
+
+circle {
+    fill: none;
+    stroke: #9440f5;
+    stroke-width: 8px;
+    stroke-dasharray: 300;
+    animation: outline 2s cubic-bezier(0.77, 0, 0.18, 1) infinite;
+}
+
+@keyframes outline {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dashoffset: 300;
+    }
+
+    100% {
+        stroke-dashoffset: 600;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(-1turn);
+    }
+}
+
+.signup-area {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }

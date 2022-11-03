@@ -1,0 +1,55 @@
+html, body {
+    height: 100vh;
+}
+
+.container-fluid .navigation {
+    position: fixed;
+    inset: 20px;
+    background: #fff;
+    width: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: 0.5s;
+    box-shadow: 0 8px 32px 0 rgba(10, 10, 50, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+.navigation ul .setting {
+    cursor: pointer;
+    color: #A3A3A3;
+    transition: 0.5s;
+}
+
+.navigation ul .setting:hover {
+    color: #AD35E9;
+    border-bottom: 3px solid #AD35E9;
+}
+
+.navigation ul .setting:hover {
+    color: #AD35E9;
+    border-bottom: 3px solid #AD35E9;
+}
+
+.table-area {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+
+.table thead {
+    margin: 20%;
+}
+
+
+/* Busy table styling */
+table.b-table[aria-busy='true'] {
+    /* opacity: 0.6; */
+    background-color: red;
+    background: red;
+}
