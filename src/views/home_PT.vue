@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <div class="row d-flex justify-content-center align-items-center">
+        <div class="row d-flex justify-content-center align-items-center" style="overflow: hidden;">
 
             <div class="navigation p-0">
                 <ul class="p-0 d-flex justify-content-between" style="flex-direction:column; height: 100%;">
@@ -59,12 +59,14 @@
                         </b-tr>
                     </b-thead> -->
                     <b-table sticky-header responsive hover :busy="isBusy"
-                        class="col-12 d-flex text-center justify-content-between" style="height: 500px;" :items="items">
+                        class="col-12 d-flex text-center justify-content-between align-items-center"
+                        style="height: 500px;" :items="items" @row-clicked="onRowSelected" select-mode="single">
                         <!-- <template> -->
-                            <div class="text-center text-dark my-2">
-                                <b-spinner class="align-middle"></b-spinner>
-                                <!-- <strong>Loading...</strong> -->
-                            </div>
+                        <div class="text-center text-dark my-2">
+                            <b-spinner class="align-middle"></b-spinner>
+                            <!-- <strong>Loading...</strong> -->
+                        </div>
+
                         <!-- </template> -->
                         <!-- <b-tbody>
                             <tr v-for="(items, index) in items.length" :key="index" class="">
@@ -80,12 +82,47 @@
 
             </div>
 
+            <Transition name="slide-fade-detailPopup">
+                <div class="col-4 p-4 detail-result-popup" v-if="popupDetail"
+                    style="height: 95%; z-index: 1; position: absolute; right:30px;  border-radius: 20px;">
+
+                    <div class="d-flex justify-content-between col-12">
+                        <h5 style="font-weight: bold; color: #AD35E9;">Result Information</h5>
+                        <iconify-icon icon="clarity:close-line" style="font-size: 30px;">
+                        </iconify-icon>
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="d-flex align-items-center">
+                            <iconify-icon icon="fluent:patient-20-regular" style="font-size: 50px;"></iconify-icon>
+                        </div>
+
+                        <div>
+                            <p>ID : xxxxxxxxx</p>
+                            <P>PTID : 87623</P>
+                            <p>Date : 3-11-22</p>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                </div>
+            </Transition>
+
+
+
             <img src="@/assets/bottom_right_PThomepage.svg" class="col-8 p-0"
                 style="right: 0%; bottom: 0%; position: absolute; width: 30%; overflow: hidden; z-index: -1;" />
 
 
-
         </div>
+
+
     </div>
 
 </template>

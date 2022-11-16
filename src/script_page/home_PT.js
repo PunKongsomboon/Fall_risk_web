@@ -21,7 +21,8 @@ export default ({
             pt_data: null,
             perPage: 3,
             currentPage: 1,
-            items: []
+            items: [],
+            popupDetail: false,
         }
     },
     beforeCreate() {
@@ -66,6 +67,12 @@ export default ({
 
     },
     methods: {
+        onRowSelected(items, index, event) {
+            // console.log(items, index);
+            // this.popupDetail = true;
+            this.popupDetail = !this.popupDetail;
+           
+        },
         router(Rname) {
             // sessionStorage.setItem('uinfo_name', datauser.name);
             // sessionStorage.setItem('uinfo_email', datauser.email);
