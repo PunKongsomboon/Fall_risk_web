@@ -46,7 +46,7 @@
 
                 <div class="col-9 table-area">
                     <div
-                        style="position: absolute; z-index: 1; top: -4%; right: 85%; background: linear-gradient(90deg, #D175FF 0%, #FF8868 100%); border-radius: 10px; box-shadow: 0 8px 32px 0 rgba(10, 10, 20, 0.37);">
+                        style="position: absolute; z-index: 1; top: -13%; right: 85%; background: linear-gradient(90deg, #D175FF 0%, #FF8868 100%); border-radius: 10px; box-shadow: 0 8px 32px 0 rgba(10, 10, 20, 0.37);">
                         <h5 class="text-white m-3">Test Result</h5>
                     </div>
                     <!-- <b-thead class="d-flex">
@@ -58,9 +58,9 @@
                             <b-th>Device</b-th>
                         </b-tr>
                     </b-thead> -->
-                    <b-table sticky-header responsive hover :busy="isBusy"
-                        class="col-12 d-flex text-center justify-content-between align-items-center"
-                        style="height: 500px;" :items="items" @row-clicked="onRowSelected" select-mode="single">
+                    <b-table sticky-header responsive hover :busy="isBusy" borderless
+                        class="col-12 d-flex text-center justify-content-between align-items-center mb-0 mt-4"
+                         :items="items" @row-clicked="onRowSelected" select-mode="single">
                         <!-- <template> -->
                         <div class="text-center text-dark my-2">
                             <b-spinner class="align-middle"></b-spinner>
@@ -82,32 +82,139 @@
 
             </div>
 
-            <Transition name="slide-fade-detailPopup">
-                <div class="col-4 p-4 detail-result-popup" v-if="popupDetail"
+            <Transition name="slide-fade-detailPopup" class="">
+                <div class="col-4 p-4 detail-result-popup popupdetail" v-if="popupDetail"
                     style="height: 95%; z-index: 1; position: absolute; right:30px;  border-radius: 20px;">
 
-                    <div class="d-flex justify-content-between col-12">
-                        <h5 style="font-weight: bold; color: #AD35E9;">Result Information</h5>
-                        <iconify-icon icon="clarity:close-line" style="font-size: 30px;">
-                        </iconify-icon>
-                    </div>
-
-                    <div class="d-flex">
-
-                        <div class="d-flex align-items-center">
-                            <iconify-icon icon="fluent:patient-20-regular" style="font-size: 50px;"></iconify-icon>
+                    <div class="">
+                        <div class="d-flex justify-content-between col-12">
+                            <h5 style="font-weight: bold; color: #AD35E9;">Result Information</h5>
+                            <button class="btn p-0" @click="popupDetail = !popupDetail">
+                                <iconify-icon icon="clarity:close-line" style="font-size: 30px;">
+                                </iconify-icon>
+                            </button>
                         </div>
 
-                        <div>
-                            <p>ID : xxxxxxxxx</p>
-                            <P>PTID : 87623</P>
-                            <p>Date : 3-11-22</p>
+                        <div class="d-flex">
+
+                            <div class="d-flex align-items-center me-3">
+                                <iconify-icon icon="fluent:patient-20-regular"
+                                    style="font-size: 50px; border-radius: 10%; background-color: #AD35E9; color: white;">
+                                </iconify-icon>
+                            </div>
+
+                            <div>
+                                <p>ID : xxxxxxxxx</p>
+                                <P>PTID : 87623</P>
+                                <p>Date : 3-11-22</p>
+                            </div>
+
+                        </div>
+
+                        <hr style="height: 2px; border: none; background: black;">
+
+
+                        <div class="container">
+
+                            <h5 class="">Chair stand test</h5>
+                            <div class="">
+
+                                <div class="d-flex col-9 justify-content-center mx-auto px-2 py-3 align-items-center"
+                                    style="border-radius: 20px; background-color: white;  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);">
+                                    <iconify-icon icon="la:chair" class="me-3"
+                                        style="font-size: 60px; background-color: #AC58D6; color: white; border-radius: 10px;">
+                                    </iconify-icon>
+                                    <div class="pt-1">
+                                        <iconify-icon icon="ant-design:clock-circle-outlined" class="col-12">
+                                        </iconify-icon>
+                                        <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="m-0">Test time : 5.50 s.</p>
+                                        <p class="m-0">Score : 4</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <h5 class="mt-5">Time up and go</h5>
+                            <div class="">
+
+                                <div class="d-flex col-9 justify-content-center mx-auto px-2 py-3 align-items-center"
+                                    style="border-radius: 20px; background-color: white;  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);">
+                                    <iconify-icon icon="ic:twotone-assist-walker" class="me-3"
+                                        style="font-size: 60px; background-color: #AC58D6; color: white; border-radius: 10px;">
+                                    </iconify-icon>
+
+                                    <div class="pt-1">
+                                        <iconify-icon icon="ant-design:clock-circle-outlined" class="col-12">
+                                        </iconify-icon>
+                                        <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="m-0">Test time : 5.50 s.</p>
+                                        <p class="m-0">Score : 4</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <h5 class="mt-5">Balance test</h5>
+                            <div class="">
+
+                                <div class="d-flex col-9 justify-content-center mx-auto px-2 py-3 align-items-center"
+                                    style="border-radius: 20px; background-color: white;  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);">
+                                    <iconify-icon icon="healthicons:exercise-walk-supported" class="me-3"
+                                        style="font-size: 60px; background-color: #AC58D6; color: white; border-radius: 10px;">
+                                    </iconify-icon>
+
+                                    <div class="pt-1">
+                                        <iconify-icon icon="ant-design:clock-circle-outlined" class="col-12">
+                                        </iconify-icon>
+                                        <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="m-0">Test time : 5.50 s.</p>
+                                        <p class="m-0">Score : 4</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <h5 class="mt-5">Gait speed test</h5>
+                            <div class="">
+
+                                <div class="d-flex col-9 justify-content-center mx-auto px-2 py-3 align-items-center"
+                                    style="border-radius: 20px; background-color: white;  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);">
+                                    <iconify-icon icon="tabler:walk" class="me-3"
+                                        style="font-size: 60px; background-color: #AC58D6; color: white; border-radius: 10px;">
+                                    </iconify-icon>
+
+                                    <div class="pt-1">
+                                        <iconify-icon icon="ant-design:clock-circle-outlined" class="col-12">
+                                        </iconify-icon>
+                                        <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
+                                    </div>
+                                    <div class="align-items-center">
+                                        <p class="m-0">Test time : 5.50 s.</p>
+                                        <p class="m-0">Score : 4</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
                         </div>
 
 
+                        <hr style="height: 2px; border: none; background: black;">
 
 
-
+                        <div class="mx-auto text-center col-7 text-white px-3 py-2"
+                            style="border-radius: 20px; background-color: #FF9534;  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);">
+                            <h5 class="">Total score : 7 score</h5>
+                        </div>
                     </div>
 
 

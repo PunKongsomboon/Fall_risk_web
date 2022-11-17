@@ -42,17 +42,14 @@ html, body {
 }
 
 
-
 .table thead {
     margin: 20%;
 }
 
-
-/* Busy table styling */
-table.b-table[aria-busy='true'] {
-    /* opacity: 0.6; */
-    background-color: red;
-    background: red;
+.table tbody tr {
+    color: black;
+    background-color: white;
+    cursor: pointer;
 }
 
 .detail-result-popup {
@@ -62,6 +59,28 @@ table.b-table[aria-busy='true'] {
     -webkit-backdrop-filter: blur(12px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.popupdetail {
+    overflow-y: overlay;
+    scrollbar-gutter: stable;
+
+}
+
+.popupdetail::-webkit-scrollbar {
+    width: 0.5em;
+
+}
+
+.popupdetail::-webkit-scrollbar-track {
+    border-radius: 20px;
+    display: none;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.popupdetail::-webkit-scrollbar-thumb {
+    background-color: #FF9534;
+    border-radius: 10px;
 }
 
 .slide-fade-detailPopup-enter-active {
