@@ -1,7 +1,7 @@
 <template>
+
     <div class="container">
         <div class="row text-center align-items-center" style="height: 100vh;">
-
             <div class="col-12 d-flex text-center justify-content-center align-items-center">
                 <div class="col-5 col-lg-3 login-left mx-auto">
                     <div class="mt-5 justify-content-center">
@@ -13,20 +13,19 @@
                             <form action="" class="">
                                 <div class="box col-8 mx-auto">
                                     <input type="text" @input="event => {
-                                    this.email = event.target.value;
+                                        this.email = event.target.value;
                                     }" required />
                                     <span>Email</span>
                                     <i></i>
                                 </div>
                                 <div class="box col-8 mx-auto">
                                     <input type="password" @input="event => {
-                                    this.pass = event.target.value;
+                                        this.pass = event.target.value;
                                     }" required />
                                     <span>Password</span>
                                     <i></i>
                                 </div>
                             </form>
-
                             <button class="btn col-7 my-4"
                                 style="background-color: #FFA1BE; color: white; border-radius: 20px;"
                                 @click="Signin()">Sign
@@ -68,21 +67,21 @@
                             <div class="col-12 signup-area p-2 text-dark">
                                 <div class="box mx-auto mt-3">
                                     <input type="text" @input="event => {
-                                    this.email = event.target.value;
+                                        this.email = event.target.value;
                                     }" required />
                                     <span>Email</span>
                                     <i></i>
                                 </div>
                                 <div class="box mx-auto mt-3">
-                                    <input type="text" @input="event => {
-                                    this.pass = event.target.value;
+                                    <input type="password" @input="event => {
+                                        this.pass = event.target.value;
                                     }" required />
                                     <span>Password</span>
                                     <i></i>
                                 </div>
                                 <div class="box mx-auto mt-3">
                                     <input type="text" @input="event => {
-                                    this.name = event.target.value;
+                                        this.name = event.target.value;
                                     }" required />
                                     <span>Name</span>
                                     <i></i>
@@ -91,7 +90,7 @@
                                 <p class="text-dark text-start">Select hospital</p>
                                 <select @change="selectHospital($event)" v-model="this.Hospital"
                                     class="form-select text-center mb-3">
-                                    <option value="MFU Hospistal">MFU Hospistal</option>
+                                    <option value="MFU Hospistal" selected>MFU Hospistal</option>
                                 </select>
                             </div>
 
@@ -105,7 +104,7 @@
                                 </div>
                                 <button class="btn col-6 my-4 text-dark"
                                     style="background-color: #FFF; color: white; border-radius: 20px; box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.124);"
-                                    @click="() => {this.stateSignUp = false}">Cancel</button>
+                                    @click="() => { this.stateSignUp = false }">Cancel</button>
                             </div>
                         </div>
                     </div>

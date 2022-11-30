@@ -2,7 +2,7 @@
 // import "bootstrap"
 
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db, signInWithEmail } from "/firebase/firebaseinit.js";
+import { auth, db } from "/firebase/firebaseinit.js";
 import { doc, getDoc, setDoc, runTransaction, query, where, collection, getDocs } from "firebase/firestore";
 
 import { ref } from 'vue'
@@ -37,11 +37,7 @@ export default ({
     async created() {
         document.querySelector('body').setAttribute('style', 'background: linear-gradient(180deg, #FCE2DB 0%, #FFCEF3 100%)');
 
-
-
         this.pt_data = JSON.parse(sessionStorage.getItem("pt_data"));
-
-        console.log(this.pt_data.personal_ID);
 
         const querySnapshot = await getDocs(collection(db, "PTuser", "PT" + this.pt_data.personal_ID, "Testresult"));
         let index = 0;
@@ -53,10 +49,11 @@ export default ({
             let device = data.device;
             console.log(doc.id, " => ", doc.data());
             this.items.push({
-                No: index,
-                id: userid,
-                score: score,
-                device: device
+                "No": index + 1,
+                "Patient ID": userid,
+                "Total score": score,
+                "Result": "More detail",
+                "Date": "",
             });
 
             index++;
@@ -71,7 +68,7 @@ export default ({
             // console.log(items, index);
             // this.popupDetail = true;
             this.popupDetail = !this.popupDetail;
-           
+
         },
         router(Rname) {
             // sessionStorage.setItem('uinfo_name', datauser.name);

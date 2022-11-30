@@ -1,5 +1,5 @@
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db, signInWithEmail } from "/firebase/firebaseinit.js";
+import { auth, db } from "/firebase/firebaseinit.js";
 import { doc, getDoc, setDoc, runTransaction, query, where, collection, getDocs } from "firebase/firestore";
 
 export default {
@@ -12,7 +12,7 @@ export default {
             pass: "",
             name: "",
             stateSignUp: false,
-            Hospital: "Select hospital",
+            Hospital: "MFU Hospistal",
         }
     },
     beforeCreate() {
@@ -26,6 +26,10 @@ export default {
     },
 
     async created() {
+
+
+
+
 
         // const docRef = doc(db, "cities", "SF");
         // const docSnap = await getDoc(docRef);
@@ -50,7 +54,15 @@ export default {
         },
 
         Signin() {
-
+            let loader = this.$loading.show({
+                // Optional parameter 
+                container: this.fullPage ? null : this.$refs.formContainer,
+                canCancel: false,
+                onCancel: this.onCancel,
+                loader: 'bars',
+                color: '#9440f5',
+                transition: 'bounce',
+            });
             // console.log(this.email);
             // console.log(this.pass);
             if (this.email != "" && this.pass != "") {
@@ -67,7 +79,7 @@ export default {
                             // console.log(doc.id, " => ", doc.data());
                             sessionStorage.setItem("pt_data", JSON.stringify(doc.data()));
                         });
-
+                        loader.hide();
                         this.$router.push({ name: 'homePT', params: { sidebar: 'homePT' } })
                         // ...
                     })
@@ -78,66 +90,60 @@ export default {
                         console.log(errorMessage);
                     });
             } else {
-
+                loader.hide();
             }
 
 
         },
 
 
-        signup() {
+        async signup() {
 
+            let loader = this.$loading.show({
+                // Optional parameter 
+                container: this.fullPage ? null : this.$refs.formContainer,
+                canCancel: false,
+                onCancel: this.onCancel,
+                loader: 'bars',
+                color: '#9440f5',
+                transition: 'bounce',
+            });
 
-            createUserWithEmailAndPassword(auth, this.email, this.pass)
-                .then(async (userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    // Add a new document in collection "cities"
+            console.log(this.email, this.pass, this.name);
 
-                    let checkIdpass = false;
+            if (this.email != "" && this.pass != "" && this.name) {
 
-                    while (checkIdpass == false) {
+                // loader.hide();
+                createUserWithEmailAndPassword(auth, this.email, this.pass)
+                    .then(async (userCredential) => {
+                        // Signed in 
+                        const user = userCredential.user;
+                        // Add a new document in collection "cities"
 
-                        let ramID = Math.floor(Math.random() * 10000);
+                        const queryPT = await getDocs(collection(db, "PTuser"));
 
-                        const docRef = doc(db, "PTuser", "PT" + ramID);
-                        const docSnap = await getDoc(docRef);
+                        await setDoc(doc(db, "PTuser", "PT" + queryPT.size + 1), {
+                            Hospital: this.Hospital,
+                            email: this.email,
+                            name: this.name,
+                            personal_ID: queryPT.size + 1
+                        });
 
-                        if (docSnap.exists()) {
-                            // console.log("Document data:", docSnap.data());
-
-                        } else {
-                            // doc.data() will be undefined in this case
-                            console.log("No such document!");
-
-                            await setDoc(doc(db, "PTuser", "PT" + ramID), {
-                                Hospital: this.Hospital,
-                                countRecord: 0,
-                                email: this.email,
-                                name: this.name,
-                                personal_ID: ramID
-                            });
-
-                            checkIdpass = true;
-                            break;
-
-                        }
-                    }
-
-
-                    this.$router.push({ name: 'homePT', params: { sidebar: 'homePT' } })
-                    // ...
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log(errorCode);
-                    console.log(errorMessage);
-                    // ..
-                });
-
-
-
+                        loader.hide();
+                        this.$router.push({ name: 'homePT', params: { sidebar: 'homePT' } })
+                        // ...
+                    })
+                    .catch((error) => {
+                        loader.hide();
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.log(errorCode);
+                        console.log(errorMessage);
+                        // ..
+                    });
+            } else {
+                loader.hide();
+            }
 
         },
 

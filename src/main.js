@@ -17,6 +17,8 @@ import BootstrapVue3 from 'bootstrap-vue-3'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 
+import { LoadingPlugin } from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -42,7 +44,7 @@ firebase.initializeApp(firebaseConfig)
 
 const app = createApp(App)
 
-
+app.use(LoadingPlugin);
 
 app.use(router);
 
