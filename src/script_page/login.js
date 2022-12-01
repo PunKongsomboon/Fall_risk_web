@@ -28,9 +28,6 @@ export default {
     async created() {
 
 
-
-
-
         // const docRef = doc(db, "cities", "SF");
         // const docSnap = await getDoc(docRef);
 
@@ -84,6 +81,7 @@ export default {
                         // ...
                     })
                     .catch((error) => {
+                        loader.hide();
                         const errorCode = error.code;
                         const errorMessage = error.message;
                         console.log(errorCode);
@@ -122,11 +120,25 @@ export default {
 
                         const queryPT = await getDocs(collection(db, "PTuser"));
 
-                        await setDoc(doc(db, "PTuser", "PT" + queryPT.size + 1), {
+                        sessionStorage.setItem("pt_data", JSON.stringify({
                             Hospital: this.Hospital,
                             email: this.email,
                             name: this.name,
                             personal_ID: queryPT.size + 1
+                        }));
+
+                        await setDoc(doc(db, "PTuser", "PT" + (queryPT.size + 1)), {
+                            Hospital: this.Hospital,
+                            email: this.email,
+                            name: this.name,
+                            personal_ID: queryPT.size + 1
+                        }).then(async () => {
+                            const update_amount = doc(db, "infosystem", "total");
+                            await runTransaction(db, async (transaction) => {
+                                const upDoc = await transaction.get(update_amount);
+                                const updatePoint = (upDoc.data().total_pt += 1);
+                                transaction.update(update_amount, { total_pt: updatePoint });
+                            });
                         });
 
                         loader.hide();

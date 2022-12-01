@@ -44,9 +44,9 @@
 
             <div class="d-flex justify-content-center align-items-center text-center" style="height: 100vh;">
 
-                <div class="col-9 table-area">
+                <div class="col-9 table-area" style="height: 500px;">
                     <div
-                        style="position: absolute; z-index: 1; top: -13%; right: 85%; background: linear-gradient(90deg, #D175FF 0%, #FF8868 100%); border-radius: 10px; box-shadow: 0 8px 32px 0 rgba(10, 10, 20, 0.37);">
+                        style="position: absolute; z-index: 1; top: -35px; right: 87%; background: linear-gradient(90deg, #D175FF 0%, #FF8868 100%); border-radius: 10px; box-shadow: 0 8px 32px 0 rgba(10, 10, 20, 0.37);">
                         <h5 class="text-white m-3">Test Result</h5>
                     </div>
                     <!-- <b-thead class="d-flex">
@@ -58,10 +58,13 @@
                             <b-th>Device</b-th>
                         </b-tr>
                     </b-thead> -->
-                    <b-table sticky-header responsive hover :busy="isBusy" borderless
-                        class="col-12 d-flex text-center justify-content-between align-items-center mb-0 mt-4"
-                         :items="items" @row-clicked="onRowSelected" select-mode="single">
+                    <b-table sticky-header responsive hover borderless
+                        class="col-12 d-flex text-center justify-content-between mb-0 mt-4" :items="items"
+                        @row-clicked="onRowSelected" select-mode="single" :fields="items_header">
                         <!-- <template> -->
+                        <!-- <template #empty="scope">
+                            Empty row
+                        </template> -->
                         <div class="text-center text-dark my-2">
                             <b-spinner class="align-middle"></b-spinner>
                             <!-- <strong>Loading...</strong> -->
@@ -95,18 +98,18 @@
                             </button>
                         </div>
 
-                        <div class="d-flex">
+                        <div class="d-flex justify-content-center">
 
                             <div class="d-flex align-items-center me-3">
                                 <iconify-icon icon="fluent:patient-20-regular"
-                                    style="font-size: 50px; border-radius: 10%; background-color: #AD35E9; color: white;">
+                                    style="font-size: 70px; border-radius: 10%; background-color: #AD35E9; color: white;">
                                 </iconify-icon>
                             </div>
 
                             <div>
-                                <p>ID : xxxxxxxxx</p>
-                                <P>PTID : 87623</P>
-                                <p>Date : 3-11-22</p>
+                                <p>ID : {{ popupiduser }}</p>
+                                <P>PTID : {{ popupidpt }}</P>
+                                <p>Date : {{ popupdate }}</p>
                             </div>
 
                         </div>
@@ -130,8 +133,9 @@
                                         <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
                                     </div>
                                     <div>
-                                        <p class="m-0">Test time : 5.50 s.</p>
-                                        <p class="m-0">Score : 4</p>
+                                        <p class="m-0">Test time : {{ ((popupdeviceTime[0] / 1000) % 60).toFixed(2) }}
+                                            s.</p>
+                                        <p class="m-0">Score : {{ popupdeviceScore[0] }}</p>
                                     </div>
 
                                 </div>
@@ -153,8 +157,9 @@
                                         <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
                                     </div>
                                     <div>
-                                        <p class="m-0">Test time : 5.50 s.</p>
-                                        <p class="m-0">Score : 4</p>
+                                        <p class="m-0">Test time : {{ ((popupdeviceTime[1] / 1000) % 60).toFixed(2) }}
+                                            s.</p>
+                                        <p class="m-0">Score : {{ popupdeviceScore[1] }}</p>
                                     </div>
 
                                 </div>
@@ -175,8 +180,9 @@
                                         <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
                                     </div>
                                     <div>
-                                        <p class="m-0">Test time : 5.50 s.</p>
-                                        <p class="m-0">Score : 4</p>
+                                        <p class="m-0">Test time : {{ ((popupdeviceTime[2] / 1000) % 60).toFixed(2) }}
+                                            s.</p>
+                                        <p class="m-0">Score : {{ popupdeviceScore[2] }}</p>
                                     </div>
 
                                 </div>
@@ -191,14 +197,15 @@
                                         style="font-size: 60px; background-color: #AC58D6; color: white; border-radius: 10px;">
                                     </iconify-icon>
 
-                                    <div class="pt-1">
+                                    <div class="pt-1 mx-2">
                                         <iconify-icon icon="ant-design:clock-circle-outlined" class="col-12">
                                         </iconify-icon>
-                                        <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon>
+                                        <!-- <iconify-icon icon="fluent:document-checkmark-20-regular"></iconify-icon> -->
                                     </div>
                                     <div class="align-items-center">
-                                        <p class="m-0">Test time : 5.50 s.</p>
-                                        <p class="m-0">Score : 4</p>
+                                        <p class="m-0">Test time : {{ ((popupdeviceTime[3] / 1000) % 60).toFixed(2) }}
+                                            s.</p>
+                                        <!-- <p class="m-0">Score : 4</p> -->
                                     </div>
 
                                 </div>
@@ -213,7 +220,7 @@
 
                         <div class="mx-auto text-center col-7 text-white px-3 py-2"
                             style="border-radius: 20px; background-color: #FF9534;  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);">
-                            <h5 class="">Total score : 7 score</h5>
+                            <h5 class="">Total score : {{ popupTotalscore }} score</h5>
                         </div>
                     </div>
 

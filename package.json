@@ -12,6 +12,7 @@
     "bootstrap-vue-3": "^0.3.11",
     "firebase": "^9.10.0",
     "firebase-tools": "^11.16.1",
+    "moment": "^2.29.4",
     "primevue": "^3.17.0",
     "vue": "^3.2.41",
     "vue-good-table-next": "^0.2.1",
